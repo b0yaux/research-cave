@@ -50,7 +50,7 @@
   --card-desc-color: #999999;
   --card-link-color: rgba(0, 233, 255, 1);
 
-  --legend-font-size: 14px;
+  --legend-font-size: 11px;
   --legend-line-height: 1.3;
   --legend-shadow: 0 0 8px rgba(0,0,0,0.8);
   --legend-max-width: 30%;
@@ -141,19 +141,22 @@ svg#edges polygon {
   backdrop-filter: blur(var(--group-blur));
   -webkit-backdrop-filter: blur(var(--group-blur));
 }
+#group-labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
 .group-label {
   position: absolute;
-  bottom: 100%;
-  left: 0;
-  padding-bottom: 8px;
+  transform: translateY(calc(-100% - 8px));
   color: var(--group-label-color);
   font-size: var(--group-label-size);
   font-weight: 600;
   letter-spacing: 0.02em;
   user-select: none;
   white-space: nowrap;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 2px 10px;
   border-radius: 4px;
   background: var(--group-label-bg);
   text-shadow: 0 1px 4px rgba(0,0,0,0.6);
@@ -431,13 +434,13 @@ svg#edges polygon {
 }
 #legend-content {
   display: none;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 72px);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 6px 0 16px 0;
   scrollbar-width: thin;
-  -webkit-mask-image: linear-gradient(to bottom, black 96%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
 }
 #legend.open #legend-content {
   display: block;
@@ -504,16 +507,16 @@ const DATA = {
   "groups": [
     {
       "x": -1980,
-      "y": -6227,
+      "y": -4972,
       "w": 3368,
-      "h": 6464,
+      "h": 5209,
       "label": "Performance & installation arts"
     },
     {
       "x": -737,
-      "y": -5591,
-      "w": 2227,
-      "h": 5769,
+      "y": -4696,
+      "w": 2164,
+      "h": 4874,
       "label": "Music and sonic environments : sampling, synthesizing, sequencing"
     },
     {
@@ -524,48 +527,36 @@ const DATA = {
       "label": "Visual synthesis, simulations, games and virtual worlds"
     },
     {
-      "x": -1753,
-      "y": -1840,
-      "w": 1774,
-      "h": 1530,
-      "label": "Transdisciplinary software"
-    },
-    {
-      "x": -1552,
-      "y": -2343,
-      "w": 1316,
-      "h": 1058,
-      "label": "Video synthesizers"
-    },
-    {
-      "x": 489,
+      "x": 461,
       "y": -1746,
-      "w": 1002,
+      "w": 884,
       "h": 1354,
-      "label": "DAWs"
+      "label": "DAWs",
+      "color": "#121212"
     },
     {
       "x": 738,
       "y": -2271,
-      "w": 734,
+      "w": 625,
       "h": 1540,
       "label": "Trackers",
-      "color": "#a882ff"
+      "color": "#8000a3"
+    },
+    {
+      "x": -1931,
+      "y": -2220,
+      "w": 3331,
+      "h": 282,
+      "label": "Hardware builds & Interfaces",
+      "color": "#121212"
     },
     {
       "x": -1960,
-      "y": -1073,
+      "y": -821,
       "w": 1052,
       "h": 859,
       "label": "Game engines",
       "color": "#121212"
-    },
-    {
-      "x": -1434,
-      "y": -2220,
-      "w": 2834,
-      "h": 282,
-      "label": "Hardware builds"
     },
     {
       "x": -894,
@@ -592,6 +583,7 @@ const DATA = {
       "label": "EYESY - Critter & Guitari",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/EYESY - Critter & Guitari.md",
+      "color": "#969696",
       "markdownHtml": "<p dir=\"auto\">EYESY is a video synthesizer that reacts to audio and MIDI. It is the next generation of ETC. EYESY runs patches called modes that can be written in Python or openFrameworks/Lua.<br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://www.critterandguitari.com/eyesy\" target=\"_blank\">https://www.critterandguitari.com/eyesy</a><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://patchstorage.com/platform/eyesy/\" target=\"_blank\">https://patchstorage.com/platform/eyesy/</a></p>"
     },
     {
@@ -602,6 +594,7 @@ const DATA = {
       "label": "NORNS",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/NORNS.md",
+      "color": "#969696",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> hardware\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://monome.org/norns/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>hardware<span class=\"token punctuation\">,</span> lua<span class=\"token punctuation\">,</span> live<span class=\"token punctuation\">-</span>coding<span class=\"token punctuation\">,</span> instrument<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"NORNS (monome)\" dir=\"auto\">NORNS (monome)</h1>\n<p dir=\"auto\">Open-source standalone computer for live-coding and sound exploration. Physical encoders + screen interface. Community-built scripts ecosystem.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Architecture</strong>: Three-layer system —\n<ul>\n<li dir=\"auto\"><em>matron</em> (C) — main process, hardware I/O, Lua runtime, screen rendering</li>\n<li dir=\"auto\"><em>Lua scripting layer</em> — user-facing API for scripts, engines, params, clocks, MIDI, grid</li>\n<li dir=\"auto\"><em>crone</em> (SuperCollider) — audio engine, synth definitions, effects</li>\n</ul>\n</li>\n<li dir=\"auto\"><strong>Scripting</strong>: Lua — the primary interface for creating instruments, sequencers, generative systems. Scripts define params, engines, UI, clock callbacks.</li>\n<li dir=\"auto\"><strong>Protocols</strong>: MIDI in/out, OSC in/out, i2c (for crow/Just Friends/Teletype), Ableton Link</li>\n<li dir=\"auto\"><strong>Hardware</strong>: Encoders, 128×64 monochrome screen, audio in/out, headphone out, USB host</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Live-coding instrument — scripts are hot-reloaded, params tweakable in real-time</li>\n<li dir=\"auto\"><strong>License</strong>: GPL-3.0 (hardware + software fully open-source)</li>\n<li dir=\"auto\"><strong>Ecosystem</strong>: Hundreds of community scripts, <em>maid</em> (web-based editor), softcut (looper/capture system)</li>\n</ul>\n<p dir=\"auto\">Shares architectural similarities with Crumble: Lua + C engine, live-coding instrument, hot-reload, params system. Key differences: NORNS is audio-only, embedded hardware, uses SuperCollider; Crumble is audiovisual, desktop, uses openFrameworks.</p>\n<p dir=\"auto\">→ <a data-href=\"SuperCollider\" href=\"SuperCollider\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">SuperCollider</a> — NORNS audio backend (crone)<br>\n→ <a data-href=\"Lua\" href=\"Lua\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Lua</a> — scripting language<br>\n→ <a data-href=\"Sardine\" href=\"Sardine\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Sardine</a> — Python live-coding, similar spirit<br>\n→ <a data-href=\"Tidal-Cycles\" href=\"Tidal-Cycles\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Tidal-Cycles</a> — live-coding lineage<br>\n→ GitHub: <a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://github.com/monome/norns\" target=\"_blank\">https://github.com/monome/norns</a></p>"
     },
     {
@@ -672,17 +665,6 @@ const DATA = {
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://derivative.ca/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> real<span class=\"token punctuation\">-</span>time<span class=\"token punctuation\">,</span> video<span class=\"token punctuation\">,</span> interactive<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"TouchDesigner\" dir=\"auto\">TouchDesigner</h1>\n<p dir=\"auto\">Node-based visual programming environment for real-time interactive multimedia content.</p>\n<p dir=\"auto\">→ Referenced throughout <a data-href=\"Architecture\" href=\"Architecture\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Architecture</a> and <a data-href=\"Landscape Research — Crumble in the Live-Coding and Media Art Field\" href=\"Landscape Research — Crumble in the Live-Coding and Media Art Field\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Landscape Research — Crumble in the Live-Coding and Media Art Field</a> as architectural comparison for sub-graphs, typed operators, node-graph design</p>"
     },
     {
-      "x": -1524,
-      "y": -997,
-      "w": 355,
-      "h": 355,
-      "label": "Godot",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/Godot.md",
-      "color": "#e9973f",
-      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://godotengine.org\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">,</span> node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Godot\" dir=\"auto\">Godot</h1>\n<p dir=\"auto\">Open-source game engine. 2D and 3D. Growing rapidly as the Unity alternative. Node-based scene architecture.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ engine, custom renderer (Vulkan, OpenGL)</li>\n<li dir=\"auto\"><strong>Scripting</strong>: GDScript (Python-like, native) — also supports C#, C++ extensions, and community Lua bindings</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Node-based scene tree — every game element is a node, scenes are trees of nodes. Visual scripting existed (removed in 4.0) but the node tree itself is a graph paradigm.</li>\n<li dir=\"auto\"><strong>Shader</strong>: Custom shader language (similar to GLSL)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, mobile, web, consoles (via exporters)</li>\n<li dir=\"auto\"><strong>License</strong>: MIT — fully open-source</li>\n</ul>\n<p dir=\"auto\">Godot's node-based scene architecture echoes the node-graph paradigm found in TouchDesigner, Max/MSP, Bespoke.</p>\n<p dir=\"auto\">→ <a data-href=\"TouchDesigner\" href=\"TouchDesigner\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">TouchDesigner</a> — node-graph paradigm, different domain<br>\n→ <a data-href=\"Bespoke Synth\" href=\"Bespoke Synth\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Bespoke Synth</a> — node-based creative tool<br>\n→ <a data-href=\"Blender\" href=\"Blender\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Blender</a> — open-source creative tool, node systems<br>\n→ <a data-href=\"Unity\" href=\"Unity\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unity</a> — industry competitor<br>\n→ <a data-href=\"Unreal Engine\" href=\"Unreal Engine\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unreal Engine</a> — industry competitor, C++</p>"
-    },
-    {
       "x": -1002,
       "y": 66,
       "w": 420,
@@ -703,28 +685,6 @@ const DATA = {
       "filePath": "Programming/Software, Embedded & Hardware/Blender.md",
       "color": "#e9973f",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://www.blender.org\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>3d<span class=\"token punctuation\">,</span> video<span class=\"token punctuation\">-</span>editing<span class=\"token punctuation\">,</span> node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> python<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Blender\" dir=\"auto\">Blender</h1>\n<p dir=\"auto\">Open-source 3D creation suite. Modeling, animation, simulation, rendering, compositing, video editing. Cross-platform.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C/C++ with Python scripting API</li>\n<li dir=\"auto\"><strong>Scripting</strong>: Full Python API — automate anything, create add-ons, procedural generation</li>\n<li dir=\"auto\"><strong>Node-graph systems</strong>: Geometry Nodes (procedural 3D), Compositor (post-processing), Shader Nodes (materials) — all visual node-graph paradigms</li>\n<li dir=\"auto\"><strong>Video</strong>: Video Sequence Editor (linear timeline editing), Grease Pencil (2D animation in 3D)</li>\n<li dir=\"auto\"><strong>Formats</strong>: FBX, OBJ, Alembic, glTF, USD, SVG, OpenEXR, multilayer OpenEXR</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Multiple paradigms coexist — linear timeline (VSE), node-graph (Geometry Nodes/Compositor/Shader), procedural scripting (Python)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Windows, macOS, Linux</li>\n<li dir=\"auto\"><strong>Interoperability</strong>: OsciStudio has a Blender addon (3D shapes → oscilloscope sound). Alfie Dwyer slices 3D models from Blender for video feedback.</li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"TouchDesigner\" href=\"TouchDesigner\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">TouchDesigner</a> — node-graph visual programming, different scope<br>\n→ <a data-href=\"OsciStudio\" href=\"OsciStudio\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">OsciStudio</a> — Blender addon for oscilloscope music (3D shapes → sound)<br>\n→ Alfie Dwyer — combines Blender 3D slicing with video feedback<br>\n→ <a data-href=\"Video synthetizer\" href=\"Video synthetizer\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Video synthetizer</a> — Blender as potential 3D/video pipeline component</p>"
-    },
-    {
-      "x": -1931,
-      "y": -997,
-      "w": 355,
-      "h": 355,
-      "label": "Unreal Engine",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/Unreal Engine.md",
-      "color": "#e9973f",
-      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://unrealengine.com\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> c<span class=\"token punctuation\">-</span>plus<span class=\"token punctuation\">-</span>plus<span class=\"token punctuation\">,</span> node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> industry<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Unreal Engine\" dir=\"auto\">Unreal Engine</h1>\n<p dir=\"auto\">AAA game engine by Epic Games. C++ native. Blueprints visual scripting. Used for games, film, virtual production, archviz.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ — full source access, can modify engine itself</li>\n<li dir=\"auto\"><strong>Scripting</strong>: C++ native + Blueprints (visual node-graph scripting). Blueprints are a full programming environment in node-graph form.</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Actor-component. Visual editor + code. Blueprints are the most widely-used node-graph programming system in the world.</li>\n<li dir=\"auto\"><strong>Rendering</strong>: Nanite (virtual geometry), Lumen (global illumination), Niagara (VFX graph — another node system)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, consoles, mobile (limited), film production</li>\n<li dir=\"auto\"><strong>License</strong>: Free until $1M revenue</li>\n</ul>\n<p dir=\"auto\">Blueprints is the <strong>largest-scale node-graph programming system in existence</strong>. Millions of people use node-graph programming daily through Unreal, most without realizing they're doing \"visual programming.\" This connects to TouchDesigner, Max/MSP, Bespoke — and the node-graph in Crumble's architecture.</p>\n<p dir=\"auto\">→ <a data-href=\"TouchDesigner\" href=\"TouchDesigner\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">TouchDesigner</a> — node-graph, industry standard for installations<br>\n→ <a data-href=\"Max MSP\" href=\"Max MSP\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Max MSP</a> — visual programming pioneer<br>\n→ <a data-href=\"Bespoke Synth\" href=\"Bespoke Synth\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Bespoke Synth</a> — node-graph audio<br>\n→ <a data-href=\"Unity\" href=\"Unity\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unity</a> — industry competitor<br>\n→ <a data-href=\"Godot\" href=\"Godot\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Godot</a> — open-source alternative</p>"
-    },
-    {
-      "x": -1931,
-      "y": -583,
-      "w": 355,
-      "h": 355,
-      "label": "Unity",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/Unity.md",
-      "color": "#e9973f",
-      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://unity.com\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> csharp<span class=\"token punctuation\">,</span> industry<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Unity\" dir=\"auto\">Unity</h1>\n<p dir=\"auto\">Industry-standard game engine. Dominates indie and mobile game dev. C# scripting. Massive ecosystem.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ engine (closed) with C# scripting API</li>\n<li dir=\"auto\"><strong>Scripting</strong>: C# — Unity's API wraps the C++ engine</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Entity-component, visual editor driven. Huge asset store ecosystem.</li>\n<li dir=\"auto\"><strong>Rendering</strong>: Built-in, URP, HDRP pipelines. Shader Graph (visual node-based shader editor)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, mobile, web, consoles, VR/AR</li>\n<li dir=\"auto\"><strong>License</strong>: Free tier + paid tiers. Controversial runtime fee (2023, partially reversed)</li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"Unreal Engine\" href=\"Unreal Engine\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unreal Engine</a> — industry competitor, C++<br>\n→ <a data-href=\"Godot\" href=\"Godot\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Godot</a> — open-source alternative<br>\n→ <a data-href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Programming/Languages, Libs &amp; Frameworks/ &gt;  openFrameworks/ &gt;  openFrameworks</a> — C++ creative coding, no editor</p>"
     },
     {
       "x": -1169,
@@ -776,6 +736,7 @@ const DATA = {
       "label": "SuperCollider",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/SuperCollider.md",
+      "color": "#53dfdd",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://supercollider.github.io/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>audio<span class=\"token punctuation\">,</span> live<span class=\"token punctuation\">-</span>coding<span class=\"token punctuation\">,</span> synthesis<span class=\"token punctuation\">,</span> programming<span class=\"token punctuation\">-</span>language<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"SuperCollider\" dir=\"auto\">SuperCollider</h1>\n<p dir=\"auto\">Real-time audio synthesis and algorithmic composition platform. Language + server architecture.</p>\n<p dir=\"auto\">→ Backend for <a data-href=\"Tidal-Cycles\" href=\"Tidal-Cycles\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Tidal-Cycles</a>, Sonic Pi, Sardine<br>\n→ Referenced in <a data-href=\"Landscape Research — Crumble in the Live-Coding and Media Art Field\" href=\"Landscape Research — Crumble in the Live-Coding and Media Art Field\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Landscape Research — Crumble in the Live-Coding and Media Art Field</a> as ecosystem neighbor to <a data-href=\"Crumble\" href=\"Crumble\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Crumble</a></p>"
     },
     {
@@ -787,16 +748,6 @@ const DATA = {
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/AudioStellar.md",
       "markdownHtml": "<p dir=\"auto\">experimental sampler build with openFrameworks+python<br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://www.audiostellar.xyz/lang/en/index.html\" target=\"_blank\">https://www.audiostellar.xyz/lang/en/index.html</a></p>\n<p dir=\"auto\">source : <a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://gitlab.com/ayrsd/audiostellar\" target=\"_blank\">https://gitlab.com/ayrsd/audiostellar</a><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://youtu.be/8CofxafLszo\" target=\"_blank\">https://youtu.be/8CofxafLszo</a></p>"
-    },
-    {
-      "x": 389,
-      "y": -1681,
-      "w": 297,
-      "h": 231,
-      "label": "MetaSynth",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/MetaSynth.md",
-      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://www.metasynth.com/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>visual<span class=\"token punctuation\">-</span>synthesis<span class=\"token punctuation\">,</span> granular<span class=\"token punctuation\">,</span> image<span class=\"token punctuation\">-</span>sound<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"MetaSynth\" dir=\"auto\">MetaSynth</h1>\n<p dir=\"auto\">Visual sound design environment. Paint and draw sounds directly on a spectrogram-like canvas.</p>\n<p dir=\"auto\">→ <a data-href=\"Softwares &amp; tools\" href=\"Softwares &amp; tools\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Softwares &amp; tools</a> — referenced in TFE research question alongside IanniX<br>\n→ <a data-href=\"Fragments\" href=\"Fragments\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Fragments</a> — similar pixel/image-sound approach<br>\n→ Inspired by the ANS Synthesizer (Evgeny Murzin, 1937)</p>"
     },
     {
       "x": 385,
@@ -811,9 +762,9 @@ const DATA = {
     },
     {
       "x": 360,
-      "y": -357,
+      "y": -346,
       "w": 351,
-      "h": 355,
+      "h": 344,
       "label": "Max MSP",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/Max MSP.md",
@@ -822,12 +773,13 @@ const DATA = {
     },
     {
       "x": -62,
-      "y": -358,
+      "y": -346,
       "w": 366,
-      "h": 356,
+      "h": 344,
       "label": "Tidal-Cycles",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/Tidal-Cycles.md",
+      "color": "#53dfdd",
       "markdownHtml": "<p dir=\"auto\"><a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://tidalcycles.org/\" target=\"_blank\">https://tidalcycles.org/</a><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://codeberg.org/uzu/tidal\" target=\"_blank\">https://codeberg.org/uzu/tidal</a><br>\nLive coding music with Algorithmic patterns</p>\n<p dir=\"auto\">→ Pattern-as-data, algorithmic composition from simple rules → <a data-href=\"Chaos, cosmos, fractales\" href=\"Chaos, cosmos, fractales\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Chaos, cosmos, fractales</a> (deterministic chaos, edge of chaos)<br>\n→ Crumble's pattern system is directly inspired by Tidal: <a data-href=\"Crumble — Architecture\" href=\"Crumble — Architecture\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Crumble — Architecture</a> / <a data-href=\"Crumble\" href=\"Crumble\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Crumble</a><br>\n→ Live-coding as anti-workflow → <a data-href=\"Web &amp; post-web references\" href=\"Web &amp; post-web references\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Web &amp; post-web references</a> (digital resistance, DIY tools)</p>"
     },
     {
@@ -894,16 +846,6 @@ const DATA = {
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://www.reaper.fm\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>daw<span class=\"token punctuation\">,</span> audio<span class=\"token punctuation\">,</span> scripting<span class=\"token punctuation\">,</span> lightweight<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Reaper\" dir=\"auto\">Reaper</h1>\n<p dir=\"auto\">Lightweight DAW with extensive scripting support. Highly customizable. Efficient resource usage. Popular in creative coding and game audio communities for its flexibility.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C/C++, very small footprint (~15MB install)</li>\n<li dir=\"auto\"><strong>Scripting</strong>: Lua, Python, EEL (ReaScript API) — can automate almost anything: routing, FX parameters, batch processing, custom actions</li>\n<li dir=\"auto\"><strong>Custom plugins</strong>: JSFX — write audio FX directly in EEL (Reaper's built-in DSP scripting language)</li>\n<li dir=\"auto\"><strong>Plugins</strong>: VST2/VST3/AU/CLAP hosting</li>\n<li dir=\"auto\"><strong>Protocols</strong>: MIDI in/out, OSC (extensive), Ableton Link, JACK, ReWire</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Traditional timeline DAW, but everything is scriptable and routable — any track can route to any other, unlimited sends/receives</li>\n<li dir=\"auto\"><strong>Licensing</strong>: Commercial but essentially free to evaluate (nag screen)</li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"Ableton Live\" href=\"Ableton Live\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Ableton Live</a> — industry DAW comparison<br>\n→ <a data-href=\"Lua\" href=\"Lua\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Lua</a> — shared scripting language<br>\n→ <a data-href=\"Renoise\" href=\"Renoise\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Renoise</a> — both appeal to power-users wanting deep customization</p>"
     },
     {
-      "x": -1346,
-      "y": -583,
-      "w": 355,
-      "h": 355,
-      "label": "LÖVE2D",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/LÖVE2D.md",
-      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://love2d.org\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> lua<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"LÖVE2D\" dir=\"auto\">LÖVE2D</h1>\n<p dir=\"auto\">Open-source 2D game framework. Lua-native — everything is written in Lua on top of a C++ core. Cross-platform (desktop, mobile). The most direct game-dev expression of the Lua-as-user-interface philosophy.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ (SDL2, OpenGL) — engine is invisible to the user</li>\n<li dir=\"auto\"><strong>Scripting</strong>: Lua — the only language you write. Full control over game loop, rendering, input.</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Code-only, no visual editor. You write the game loop yourself (update/draw). Minimalist, hackable.</li>\n<li dir=\"auto\"><strong>Distribution</strong>: Source is just .lua files + assets. Can be fused into standalone executables.</li>\n<li dir=\"auto\"><strong>Community</strong>: Very active. Loads of libraries (physics, UI, networking, shaders).</li>\n</ul>\n<p dir=\"auto\">LÖVE2D shares Crumble's architecture: C++ engine + Lua scripting layer. Same philosophy — give the user full control through Lua while the engine handles the heavy lifting. The difference is domain: games vs AV live-coding.</p>\n<p dir=\"auto\">→ <a data-href=\"Lua\" href=\"Lua\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Lua</a> — native scripting language<br>\n→ <a data-href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Programming/Languages, Libs &amp; Frameworks/ &gt;  openFrameworks/ &gt;  openFrameworks</a> — same C++ creative coding philosophy, different abstraction level<br>\n→ <a data-href=\"Crumble\" href=\"Crumble\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Crumble</a> — same C++ + Lua architecture pattern<br>\n→ <a data-href=\"NORNS\" href=\"NORNS\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">NORNS</a> — same C + Lua architecture pattern<br>\n→ <a data-href=\"Defold\" href=\"Defold\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Defold</a> — Lua game engine, commercial cousin</p>"
-    },
-    {
       "x": 1028,
       "y": -1013,
       "w": 309,
@@ -941,6 +883,7 @@ const DATA = {
       "label": "M8 Tracker",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/M8 Tracker.md",
+      "color": "#969696",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> hardware\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://dirtywave.com\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>tracker<span class=\"token punctuation\">,</span> hardware<span class=\"token punctuation\">,</span> portable<span class=\"token punctuation\">,</span> synth<span class=\"token punctuation\">,</span> sampler<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"M8 Tracker (Dirtywave)\" dir=\"auto\">M8 Tracker (Dirtywave)</h1>\n<p dir=\"auto\">Portable hardware tracker — tracker-based composition in a standalone device. Battery-powered, screen + buttons interface. Descendant of the tracker paradigm (FastTracker, Renoise) in dedicated hardware form.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: Teensy 4.1 (ARM Cortex-M7) — custom firmware by Dirtywave</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Tracker — vertical pattern grid, step sequencing per track, effect columns</li>\n<li dir=\"auto\"><strong>Tracks</strong>: 8 tracks (synth, sampler, MIDI out) with independent FX chains</li>\n<li dir=\"auto\"><strong>Synthesis</strong>: Multiple engine types (macro synth, wavetable, sample playback)</li>\n<li dir=\"auto\"><strong>Sampling</strong>: Sample playback withslice, time-stretch</li>\n<li dir=\"auto\"><strong>Effects</strong>: Per-track and master FX chains (filter, delay, reverb, distortion, chorus, etc.)</li>\n<li dir=\"auto\"><strong>I/O</strong>: Stereo audio in/out, MIDI in/out, headphone out, microSD storage</li>\n<li dir=\"auto\"><strong>Sequencing</strong>: Pattern-based — patterns arranged into chains/songs. Linear and live modes.</li>\n<li dir=\"auto\"><strong>Format</strong>: .m8s project files</li>\n</ul>\n<h2 data-heading=\"Community\" dir=\"auto\">Community</h2>\n<ul>\n<li dir=\"auto\">Community Documentation: <a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://coda.io/@tom-avatars/dirtywave-m8-ressources/community-documentation-4\" target=\"_blank\">https://coda.io/@tom-avatars/dirtywave-m8-ressources/community-documentation-4</a></li>\n<li dir=\"auto\">Template: <a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://github.com/nchowning/M8-template\" target=\"_blank\">https://github.com/nchowning/M8-template</a></li>\n<li dir=\"auto\">Reddit: <a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://www.reddit.com/r/Dirtywave/\" target=\"_blank\">https://www.reddit.com/r/Dirtywave/</a></li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"Renoise\" href=\"Renoise\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Renoise</a> — software tracker DAW, same paradigm<br>\n→ <a data-href=\"SunVox\" href=\"SunVox\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">SunVox</a> — software tracker, same lineage<br>\n→ <a data-href=\"Trackers softwares\" href=\"Trackers softwares\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Trackers softwares</a> — tracker history<br>\n→ <a data-href=\"EYESY - Critter &amp; Guitari\" href=\"EYESY - Critter &amp; Guitari\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">EYESY - Critter &amp; Guitari</a> — portable hardware, different domain</p>"
     },
     {
@@ -978,9 +921,9 @@ const DATA = {
     },
     {
       "x": -690,
-      "y": -861,
+      "y": -901,
       "w": 664,
-      "h": 430,
+      "h": 509,
       "label": "Crumble",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/Crumble.md",
@@ -1035,18 +978,8 @@ const DATA = {
       "label": "Hypno",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/Hypno.md",
+      "color": "#969696",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> hardware\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://sleepycircuits.com/hypno\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>video<span class=\"token punctuation\">-</span>synth<span class=\"token punctuation\">,</span> hardware<span class=\"token punctuation\">,</span> raspberry<span class=\"token punctuation\">-</span>pi<span class=\"token punctuation\">,</span> embedded<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Hypno (Sleepy Circuits)\" dir=\"auto\">Hypno (Sleepy Circuits)</h1>\n<p dir=\"auto\">Hardware video synthesizer built on Raspberry Pi (3/4 or CM4). Generates visuals from audio input and parameter controls. Open firmware.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: Raspberry Pi (3B+/4/CM4) + custom PCB, HDMI output</li>\n<li dir=\"auto\"><strong>Firmware</strong>: Open-source (GitHub) — can be modified and reflashed</li>\n<li dir=\"auto\"><strong>Input</strong>: Audio in (3.5mm) for audio-reactive visuals, USB MIDI, knobs/buttons on hardware</li>\n<li dir=\"auto\"><strong>Output</strong>: HDMI video out</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Standalone hardware — no computer needed. Knobs + audio drive real-time visual generation.</li>\n<li dir=\"auto\"><strong>Modding</strong>: DIY version possible (open hardware design). Firmware can be customized.</li>\n<li dir=\"auto\"><strong>Community</strong>: Overlaps with <a data-href=\"Scanlines\" href=\"Scanlines\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Scanlines</a> DIY video synth community</li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"EYESY - Critter &amp; Guitari\" href=\"EYESY - Critter &amp; Guitari\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">EYESY - Critter &amp; Guitari</a> — companion hardware video synth (same era, same niche)<br>\n→ <a data-href=\"Hydra Synth\" href=\"Hydra Synth\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Hydra Synth</a> — software video synth, similar visual aesthetics<br>\n→ <a data-href=\"Video synthetizer\" href=\"Video synthetizer\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Video synthetizer</a> — speculative RPi5 project, same hardware lineage<br>\n→ <a data-href=\"Scanlines\" href=\"Scanlines\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Scanlines</a> — DIY video synth community</p>"
-    },
-    {
-      "x": -1089,
-      "y": -1681,
-      "w": 313,
-      "h": 231,
-      "label": "Mosaic",
-      "type": "markdown",
-      "filePath": "Programming/Software, Embedded & Hardware/Mosaic.md",
-      "color": "#e9973f",
-      "markdownHtml": "<p dir=\"auto\"><span alt=\"Pasted image 20251004220224.png\" src=\"Pasted image 20251004220224.png\" class=\"internal-embed media-embed image-embed is-loaded\"><img alt=\"Pasted image 20251004220224.png\" src=\"attachments/Pasted image 20251004220224.png\"></span><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://mosaic.d3cod3.org/\" target=\"_blank\">https://mosaic.d3cod3.org/</a><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://github.com/d3cod3/Mosaic\" target=\"_blank\">https://github.com/d3cod3/Mosaic</a></p>\n<p dir=\"auto\">Mosaic is an open-source visual patching and <em>live-coding</em> platform built on OpenFrameworks, designed for creating real-time audio-visual compositions. Its core functionality is handled by the <strong>Visual Programming Engine</strong>, which manages the data flow between interconnected nodes. The system incorporates an <strong>Embedded Code Editor</strong> for instant script modifications (Lua, GLSL, Bash) and uses an <em>Interactive Logger and Console</em> for debugging and executing high-level system commands.</p>\n<h1 data-heading=\"Tutorial: Mosaic\" dir=\"auto\">Tutorial: Mosaic</h1>\n<p dir=\"auto\"><a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://code2tutorial.com/tutorial/055c6557-6f07-40da-ada8-cee4b85b9838/index.md\" target=\"_blank\">https://code2tutorial.com/tutorial/055c6557-6f07-40da-ada8-cee4b85b9838/index.md</a></p>"
     },
     {
       "x": -756,
@@ -1082,11 +1015,75 @@ const DATA = {
       "x": 76,
       "y": -614,
       "w": 271,
-      "h": 182,
+      "h": 222,
       "label": "RAVE (IRCAM)",
       "type": "markdown",
       "filePath": "Programming/Software, Embedded & Hardware/RAVE (IRCAM).md",
       "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://acids-ircam.github.io/RAVE/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>ai<span class=\"token punctuation\">,</span> deep<span class=\"token punctuation\">-</span>learning<span class=\"token punctuation\">,</span> audio<span class=\"token punctuation\">,</span> ircam<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"RAVE (IRCAM)\" dir=\"auto\">RAVE (IRCAM)</h1>\n<p dir=\"auto\">Realtime Audio Variational autoEncoder. Deep learning framework for audio waveform synthesis (20x real-time at 48kHz on CPU). Available as Max/Pd externals and VST.</p>\n<p dir=\"auto\">→ <a data-href=\"Synaebrain\" href=\"Synaebrain\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Synaebrain</a> — AI-driven audio generation/transformation<br>\n→ <a data-href=\"Softwares &amp; tools\" href=\"Softwares &amp; tools\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Softwares &amp; tools</a> — IRCAM tools</p>"
+    },
+    {
+      "x": -1104,
+      "y": -1681,
+      "w": 313,
+      "h": 231,
+      "label": "Mosaic",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/Mosaic.md",
+      "color": "#e9973f",
+      "markdownHtml": "<p dir=\"auto\"><span alt=\"Pasted image 20251004220224.png\" src=\"Pasted image 20251004220224.png\" class=\"internal-embed media-embed image-embed is-loaded\"><img alt=\"Pasted image 20251004220224.png\" src=\"attachments/Pasted image 20251004220224.png\"></span><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://mosaic.d3cod3.org/\" target=\"_blank\">https://mosaic.d3cod3.org/</a><br>\n<a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://github.com/d3cod3/Mosaic\" target=\"_blank\">https://github.com/d3cod3/Mosaic</a></p>\n<p dir=\"auto\">Mosaic is an open-source visual patching and <em>live-coding</em> platform built on OpenFrameworks, designed for creating real-time audio-visual compositions. Its core functionality is handled by the <strong>Visual Programming Engine</strong>, which manages the data flow between interconnected nodes. The system incorporates an <strong>Embedded Code Editor</strong> for instant script modifications (Lua, GLSL, Bash) and uses an <em>Interactive Logger and Console</em> for debugging and executing high-level system commands.</p>\n<h1 data-heading=\"Tutorial: Mosaic\" dir=\"auto\">Tutorial: Mosaic</h1>\n<p dir=\"auto\"><a rel=\"noopener nofollow\" class=\"external-link\" href=\"https://code2tutorial.com/tutorial/055c6557-6f07-40da-ada8-cee4b85b9838/index.md\" target=\"_blank\">https://code2tutorial.com/tutorial/055c6557-6f07-40da-ada8-cee4b85b9838/index.md</a></p>"
+    },
+    {
+      "x": 385,
+      "y": -1388,
+      "w": 297,
+      "h": 231,
+      "label": "MetaSynth",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/MetaSynth.md",
+      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://www.metasynth.com/\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>visual<span class=\"token punctuation\">-</span>synthesis<span class=\"token punctuation\">,</span> granular<span class=\"token punctuation\">,</span> image<span class=\"token punctuation\">-</span>sound<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"MetaSynth\" dir=\"auto\">MetaSynth</h1>\n<p dir=\"auto\">Visual sound design environment. Paint and draw sounds directly on a spectrogram-like canvas.</p>\n<p dir=\"auto\">→ <a data-href=\"Softwares &amp; tools\" href=\"Softwares &amp; tools\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Softwares &amp; tools</a> — referenced in TFE research question alongside IanniX<br>\n→ <a data-href=\"Fragments\" href=\"Fragments\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Fragments</a> — similar pixel/image-sound approach<br>\n→ Inspired by the ANS Synthesizer (Evgeny Murzin, 1937)</p>"
+    },
+    {
+      "x": -1931,
+      "y": -745,
+      "w": 355,
+      "h": 355,
+      "label": "Unreal Engine",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/Unreal Engine.md",
+      "color": "#e9973f",
+      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://unrealengine.com\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> c<span class=\"token punctuation\">-</span>plus<span class=\"token punctuation\">-</span>plus<span class=\"token punctuation\">,</span> node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> industry<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Unreal Engine\" dir=\"auto\">Unreal Engine</h1>\n<p dir=\"auto\">AAA game engine by Epic Games. C++ native. Blueprints visual scripting. Used for games, film, virtual production, archviz.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ — full source access, can modify engine itself</li>\n<li dir=\"auto\"><strong>Scripting</strong>: C++ native + Blueprints (visual node-graph scripting). Blueprints are a full programming environment in node-graph form.</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Actor-component. Visual editor + code. Blueprints are the most widely-used node-graph programming system in the world.</li>\n<li dir=\"auto\"><strong>Rendering</strong>: Nanite (virtual geometry), Lumen (global illumination), Niagara (VFX graph — another node system)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, consoles, mobile (limited), film production</li>\n<li dir=\"auto\"><strong>License</strong>: Free until $1M revenue</li>\n</ul>\n<p dir=\"auto\">Blueprints is the <strong>largest-scale node-graph programming system in existence</strong>. Millions of people use node-graph programming daily through Unreal, most without realizing they're doing \"visual programming.\" This connects to TouchDesigner, Max/MSP, Bespoke — and the node-graph in Crumble's architecture.</p>\n<p dir=\"auto\">→ <a data-href=\"TouchDesigner\" href=\"TouchDesigner\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">TouchDesigner</a> — node-graph, industry standard for installations<br>\n→ <a data-href=\"Max MSP\" href=\"Max MSP\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Max MSP</a> — visual programming pioneer<br>\n→ <a data-href=\"Bespoke Synth\" href=\"Bespoke Synth\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Bespoke Synth</a> — node-graph audio<br>\n→ <a data-href=\"Unity\" href=\"Unity\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unity</a> — industry competitor<br>\n→ <a data-href=\"Godot\" href=\"Godot\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Godot</a> — open-source alternative</p>"
+    },
+    {
+      "x": -1931,
+      "y": -331,
+      "w": 355,
+      "h": 355,
+      "label": "Unity",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/Unity.md",
+      "color": "#e9973f",
+      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://unity.com\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> csharp<span class=\"token punctuation\">,</span> industry<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Unity\" dir=\"auto\">Unity</h1>\n<p dir=\"auto\">Industry-standard game engine. Dominates indie and mobile game dev. C# scripting. Massive ecosystem.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ engine (closed) with C# scripting API</li>\n<li dir=\"auto\"><strong>Scripting</strong>: C# — Unity's API wraps the C++ engine</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Entity-component, visual editor driven. Huge asset store ecosystem.</li>\n<li dir=\"auto\"><strong>Rendering</strong>: Built-in, URP, HDRP pipelines. Shader Graph (visual node-based shader editor)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, mobile, web, consoles, VR/AR</li>\n<li dir=\"auto\"><strong>License</strong>: Free tier + paid tiers. Controversial runtime fee (2023, partially reversed)</li>\n</ul>\n<p dir=\"auto\">→ <a data-href=\"Unreal Engine\" href=\"Unreal Engine\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unreal Engine</a> — industry competitor, C++<br>\n→ <a data-href=\"Godot\" href=\"Godot\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Godot</a> — open-source alternative<br>\n→ <a data-href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Programming/Languages, Libs &amp; Frameworks/ &gt;  openFrameworks/ &gt;  openFrameworks</a> — C++ creative coding, no editor</p>"
+    },
+    {
+      "x": -1346,
+      "y": -331,
+      "w": 355,
+      "h": 355,
+      "label": "LÖVE2D",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/LÖVE2D.md",
+      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://love2d.org\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> lua<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"LÖVE2D\" dir=\"auto\">LÖVE2D</h1>\n<p dir=\"auto\">Open-source 2D game framework. Lua-native — everything is written in Lua on top of a C++ core. Cross-platform (desktop, mobile). The most direct game-dev expression of the Lua-as-user-interface philosophy.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ (SDL2, OpenGL) — engine is invisible to the user</li>\n<li dir=\"auto\"><strong>Scripting</strong>: Lua — the only language you write. Full control over game loop, rendering, input.</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Code-only, no visual editor. You write the game loop yourself (update/draw). Minimalist, hackable.</li>\n<li dir=\"auto\"><strong>Distribution</strong>: Source is just .lua files + assets. Can be fused into standalone executables.</li>\n<li dir=\"auto\"><strong>Community</strong>: Very active. Loads of libraries (physics, UI, networking, shaders).</li>\n</ul>\n<p dir=\"auto\">LÖVE2D shares Crumble's architecture: C++ engine + Lua scripting layer. Same philosophy — give the user full control through Lua while the engine handles the heavy lifting. The difference is domain: games vs AV live-coding.</p>\n<p dir=\"auto\">→ <a data-href=\"Lua\" href=\"Lua\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Lua</a> — native scripting language<br>\n→ <a data-href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" href=\"Programming/Languages, Libs &amp; Frameworks/# openFrameworks/# openFrameworks\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Programming/Languages, Libs &amp; Frameworks/ &gt;  openFrameworks/ &gt;  openFrameworks</a> — same C++ creative coding philosophy, different abstraction level<br>\n→ <a data-href=\"Crumble\" href=\"Crumble\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Crumble</a> — same C++ + Lua architecture pattern<br>\n→ <a data-href=\"NORNS\" href=\"NORNS\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">NORNS</a> — same C + Lua architecture pattern<br>\n→ <a data-href=\"Defold\" href=\"Defold\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Defold</a> — Lua game engine, commercial cousin</p>"
+    },
+    {
+      "x": -1524,
+      "y": -745,
+      "w": 355,
+      "h": 355,
+      "label": "Godot",
+      "type": "markdown",
+      "filePath": "Programming/Software, Embedded & Hardware/Godot.md",
+      "color": "#e9973f",
+      "markdownHtml": "<pre class=\"frontmatter language-yaml\" style=\"display: none;\"><code class=\"language-yaml is-loaded\"><span class=\"token key atrule\">type</span><span class=\"token punctuation\">:</span> software\n<span class=\"token key atrule\">url</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://godotengine.org\"</span>\n<span class=\"token key atrule\">tags</span><span class=\"token punctuation\">:</span> <span class=\"token punctuation\">[</span>game<span class=\"token punctuation\">-</span>engine<span class=\"token punctuation\">,</span> open<span class=\"token punctuation\">-</span>source<span class=\"token punctuation\">,</span> node<span class=\"token punctuation\">-</span>graph<span class=\"token punctuation\">,</span> 2d<span class=\"token punctuation\">,</span> 3d<span class=\"token punctuation\">]</span></code><button class=\"copy-code-button\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"svg-icon lucide-copy\"><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg></button></pre>\n<h1 data-heading=\"Godot\" dir=\"auto\">Godot</h1>\n<p dir=\"auto\">Open-source game engine. 2D and 3D. Growing rapidly as the Unity alternative. Node-based scene architecture.</p>\n<h2 data-heading=\"Technical\" dir=\"auto\">Technical</h2>\n<ul>\n<li dir=\"auto\"><strong>Core</strong>: C++ engine, custom renderer (Vulkan, OpenGL)</li>\n<li dir=\"auto\"><strong>Scripting</strong>: GDScript (Python-like, native) — also supports C#, C++ extensions, and community Lua bindings</li>\n<li dir=\"auto\"><strong>Paradigm</strong>: Node-based scene tree — every game element is a node, scenes are trees of nodes. Visual scripting existed (removed in 4.0) but the node tree itself is a graph paradigm.</li>\n<li dir=\"auto\"><strong>Shader</strong>: Custom shader language (similar to GLSL)</li>\n<li dir=\"auto\"><strong>Cross-platform</strong>: Desktop, mobile, web, consoles (via exporters)</li>\n<li dir=\"auto\"><strong>License</strong>: MIT — fully open-source</li>\n</ul>\n<p dir=\"auto\">Godot's node-based scene architecture echoes the node-graph paradigm found in TouchDesigner, Max/MSP, Bespoke.</p>\n<p dir=\"auto\">→ <a data-href=\"TouchDesigner\" href=\"TouchDesigner\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">TouchDesigner</a> — node-graph paradigm, different domain<br>\n→ <a data-href=\"Bespoke Synth\" href=\"Bespoke Synth\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Bespoke Synth</a> — node-based creative tool<br>\n→ <a data-href=\"Blender\" href=\"Blender\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Blender</a> — open-source creative tool, node systems<br>\n→ <a data-href=\"Unity\" href=\"Unity\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unity</a> — industry competitor<br>\n→ <a data-href=\"Unreal Engine\" href=\"Unreal Engine\" class=\"internal-link\" target=\"_blank\" rel=\"noopener nofollow\">Unreal Engine</a> — industry competitor, C++</p>"
     }
   ],
   "edges": [
@@ -1099,11 +1096,11 @@ const DATA = {
       "color": "#ff2e9d"
     },
     {
-      "d": "M -318 -55 C -318 -403.75 -932.5 -1101.25 -932.5 -1450",
+      "d": "M -318 -55 C -318 -403.75 -947.5 -1101.25 -947.5 -1450",
       "color": "#ff2e9d"
     },
     {
-      "d": "M -318 -55 C -318 -403.75 -932.5 -1101.25 -932.5 -1450",
+      "d": "M -318 -55 C -318 -403.75 -947.5 -1101.25 -947.5 -1450",
       "color": "#ff2e9d"
     },
     {
@@ -1123,11 +1120,11 @@ const DATA = {
       "color": "#ff2e9d"
     },
     {
-      "d": "M -318 -55 C -318 -149 -358 -337 -358 -431",
+      "d": "M -318 -55 C -318 -139.25 -358 -307.75 -358 -392",
       "color": "#ff2e9d"
     },
     {
-      "d": "M -318 -55 C -318 -149 -358 -337 -358 -431",
+      "d": "M -318 -55 C -318 -139.25 -358 -307.75 -358 -392",
       "color": "#ff2e9d"
     },
     {
@@ -1137,10 +1134,10 @@ const DATA = {
       "d": "M -513 -1148 C -421.5 -1148 -238.5 -1148 -147 -1148"
     },
     {
-      "d": "M 121 -358 C 121 -528.25 12.5 -868.75 12.5 -1039"
+      "d": "M 121 -346 C 121 -519.25 12.5 -865.75 12.5 -1039"
     },
     {
-      "d": "M 121 -358 C 121 -528.25 12.5 -868.75 12.5 -1039"
+      "d": "M 121 -346 C 121 -519.25 12.5 -865.75 12.5 -1039"
     },
     {
       "d": "M 121 48 C 121 35.5 121 10.5 121 -2"
@@ -1155,10 +1152,10 @@ const DATA = {
       "d": "M 536 59 C 536 43.75 535.5 13.25 535.5 -2"
     },
     {
-      "d": "M 535.5 -357 C 535.5 -518.75 1182.5 -265.25 1182.5 -427"
+      "d": "M 535.5 -346 C 535.5 -507.75 1182.5 -265.25 1182.5 -427"
     },
     {
-      "d": "M 535.5 -357 C 535.5 -518.75 1182.5 -265.25 1182.5 -427"
+      "d": "M 535.5 -346 C 535.5 -507.75 1182.5 -265.25 1182.5 -427"
     },
     {
       "d": "M 278 -1952 C 278 -1452 121 -452 121 48"
@@ -1173,46 +1170,46 @@ const DATA = {
       "d": "M 1182.5 -1952 C 1182.5 -1717.25 1182.5 -1247.75 1182.5 -1013"
     },
     {
-      "d": "M -1169 -1565.5 C -1149 -1565.5 -1109 -1565.5 -1089 -1565.5"
+      "d": "M -1169 -1565.5 C -1152.75 -1565.5 -1120.25 -1565.5 -1104 -1565.5"
     },
     {
-      "d": "M -1169 -1565.5 C -1149 -1565.5 -1109 -1565.5 -1089 -1565.5"
-    },
-    {
-      "d": "M 535.5 -427 C 535.5 -245.25 1262.5 -133.75 1262.5 48"
+      "d": "M -1169 -1565.5 C -1152.75 -1565.5 -1120.25 -1565.5 -1104 -1565.5"
     },
     {
       "d": "M 535.5 -427 C 535.5 -245.25 1262.5 -133.75 1262.5 48"
     },
     {
-      "d": "M -1346.5 -1388 C -1346.5 -961.375 -66.625 -179.5 360 -179.5"
+      "d": "M 535.5 -427 C 535.5 -245.25 1262.5 -133.75 1262.5 48"
     },
     {
-      "d": "M -1346.5 -1388 C -1346.5 -961.375 -66.625 -179.5 360 -179.5"
+      "d": "M -1346.5 -1388 C -1346.5 -961.375 -66.625 -174 360 -174"
     },
     {
-      "d": "M -1346.5 -642 C -1346.5 -582.875 -1516.875 -405.5 -1576 -405.5"
+      "d": "M -1346.5 -1388 C -1346.5 -961.375 -66.625 -174 360 -174"
     },
     {
-      "d": "M -1346.5 -642 C -1346.5 -582.875 -1516.875 -405.5 -1576 -405.5"
+      "d": "M -1346.5 -390 C -1346.5 -330.875 -1516.875 -153.5 -1576 -153.5"
     },
     {
-      "d": "M -1753.5 -583 C -1753.5 -597.75 -1753.5 -627.25 -1753.5 -642"
+      "d": "M -1346.5 -390 C -1346.5 -330.875 -1516.875 -153.5 -1576 -153.5"
     },
     {
-      "d": "M -1753.5 -583 C -1753.5 -597.75 -1753.5 -627.25 -1753.5 -642"
+      "d": "M -1753.5 -331 C -1753.5 -345.75 -1753.5 -375.25 -1753.5 -390"
     },
     {
-      "d": "M -1753.5 -997 C -1753.5 -1098.75 -1346.5 -1286.25 -1346.5 -1388"
+      "d": "M -1753.5 -331 C -1753.5 -345.75 -1753.5 -375.25 -1753.5 -390"
     },
     {
-      "d": "M -1753.5 -997 C -1753.5 -1098.75 -1346.5 -1286.25 -1346.5 -1388"
+      "d": "M -1753.5 -745 C -1753.5 -905.75 -1346.5 -1227.25 -1346.5 -1388"
     },
     {
-      "d": "M -1346.5 -997 C -1346.5 -1098.75 -1753.5 -1286.25 -1753.5 -1388"
+      "d": "M -1753.5 -745 C -1753.5 -905.75 -1346.5 -1227.25 -1346.5 -1388"
     },
     {
-      "d": "M -1346.5 -997 C -1346.5 -1098.75 -1753.5 -1286.25 -1753.5 -1388"
+      "d": "M -1346.5 -745 C -1346.5 -905.75 -1753.5 -1227.25 -1753.5 -1388"
+    },
+    {
+      "d": "M -1346.5 -745 C -1346.5 -905.75 -1753.5 -1227.25 -1753.5 -1388"
     },
     {
       "d": "M -690 -1257 C -690 -1430.75 -865 -1778.25 -865 -1952"
@@ -1233,16 +1230,16 @@ const DATA = {
       "d": "M -1576 -1565.5 C -1249.25 -1565.5 -595.75 -1565.5 -269 -1565.5"
     },
     {
-      "d": "M -358 -861 C -358 -1493.75 -537 -2759.25 -537 -3392"
+      "d": "M -358 -901 C -358 -1523.75 -537 -2769.25 -537 -3392"
     },
     {
-      "d": "M -358 -861 C -358 -1493.75 -537 -2759.25 -537 -3392"
+      "d": "M -358 -901 C -358 -1523.75 -537 -2769.25 -537 -3392"
     },
     {
-      "d": "M -26 -646 C 175 -646 179 -1249 179 -1450"
+      "d": "M -26 -646.5 C 174.875 -646.5 179 -1249.125 179 -1450"
     },
     {
-      "d": "M -26 -646 C 175 -646 179 -1249 179 -1450"
+      "d": "M -26 -646.5 C 174.875 -646.5 179 -1249.125 179 -1450"
     },
     {
       "d": "M -513 -1148 C -494.5 -1148 -457.5 -1148 -439 -1148"
@@ -1259,11 +1256,11 @@ const DATA = {
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -112 -868 -646 -690 -646",
+      "d": "M -792 66 C -792 -112.125 -868.125 -646.5 -690 -646.5",
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -112 -868 -646 -690 -646",
+      "d": "M -792 66 C -792 -112.125 -868.125 -646.5 -690 -646.5",
       "color": "#002aff"
     },
     {
@@ -1283,15 +1280,11 @@ const DATA = {
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -51.875 -873.125 -405.5 -991 -405.5",
+      "d": "M -792 66 C -792 11.125 -936.125 -153.5 -991 -153.5",
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -51.875 -873.125 -405.5 -991 -405.5",
-      "color": "#002aff"
-    },
-    {
-      "d": "M -792 66 C -792 -326.75 386.25 -535.5 779 -535.5",
+      "d": "M -792 66 C -792 11.125 -936.125 -153.5 -991 -153.5",
       "color": "#002aff"
     },
     {
@@ -1299,11 +1292,15 @@ const DATA = {
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -341.875 -1496.875 -1565.5 -1089 -1565.5",
+      "d": "M -792 66 C -792 -326.75 386.25 -535.5 779 -535.5",
       "color": "#002aff"
     },
     {
-      "d": "M -792 66 C -792 -341.875 -1496.875 -1565.5 -1089 -1565.5",
+      "d": "M -792 66 C -792 -341.875 -1511.875 -1565.5 -1104 -1565.5",
+      "color": "#002aff"
+    },
+    {
+      "d": "M -792 66 C -792 -341.875 -1511.875 -1565.5 -1104 -1565.5",
       "color": "#002aff"
     },
     {
@@ -1313,10 +1310,10 @@ const DATA = {
       "d": "M 738.5 -1092 C 738.5 -1307 1182.5 -1737 1182.5 -1952"
     },
     {
-      "d": "M -24 -1565.5 C 79.25 -1565.5 285.75 -1565.5 389 -1565.5"
+      "d": "M -24 -1565.5 C 78.25 -1565.5 282.75 -1272.5 385 -1272.5"
     },
     {
-      "d": "M -24 -1565.5 C 79.25 -1565.5 285.75 -1565.5 389 -1565.5"
+      "d": "M -24 -1565.5 C 78.25 -1565.5 282.75 -1272.5 385 -1272.5"
     },
     {
       "d": "M 1177.5 -1708 C 1177.5 -2231 645 -3277 645 -3800"
@@ -1331,28 +1328,28 @@ const DATA = {
       "d": "M 645 -3800 C 645 -3075.25 211.5 -1625.75 211.5 -901"
     },
     {
-      "d": "M 535.5 -427 C 535.5 -409.5 535.5 -374.5 535.5 -357"
+      "d": "M 535.5 -427 C 535.5 -406.75 535.5 -366.25 535.5 -346"
     },
     {
-      "d": "M 535.5 -427 C 535.5 -409.5 535.5 -374.5 535.5 -357"
-    },
-    {
-      "d": "M 917.5 66 C 917.5 49 916.5 15 916.5 -2"
+      "d": "M 535.5 -427 C 535.5 -406.75 535.5 -366.25 535.5 -346"
     },
     {
       "d": "M 917.5 66 C 917.5 49 916.5 15 916.5 -2"
     },
     {
-      "d": "M 211.5 -432 C 211.5 -368.875 296.875 -179.5 360 -179.5"
+      "d": "M 917.5 66 C 917.5 49 916.5 15 916.5 -2"
     },
     {
-      "d": "M 211.5 -432 C 211.5 -368.875 296.875 -179.5 360 -179.5"
+      "d": "M 211.5 -392 C 211.5 -337.5 305.5 -174 360 -174"
     },
     {
-      "d": "M 211.5 -432 C 211.5 -273.5 231.5 202 390 202"
+      "d": "M 211.5 -392 C 211.5 -337.5 305.5 -174 360 -174"
     },
     {
-      "d": "M 211.5 -432 C 211.5 -273.5 231.5 202 390 202"
+      "d": "M 211.5 -392 C 211.5 -243.5 241.5 202 390 202"
+    },
+    {
+      "d": "M 211.5 -392 C 211.5 -243.5 241.5 202 390 202"
     }
   ],
   "arrows": [
@@ -1364,7 +1361,7 @@ const DATA = {
       "style": "circle"
     },
     {
-      "x": -932.5,
+      "x": -947.5,
       "y": -1450,
       "rot": 0,
       "color": "#ff2e9d",
@@ -1386,14 +1383,14 @@ const DATA = {
     },
     {
       "x": -358,
-      "y": -431,
+      "y": -392,
       "rot": 0,
       "color": "#ff2e9d",
       "style": "circle"
     },
     {
       "x": -690,
-      "y": -646,
+      "y": -646.5,
       "rot": 90,
       "color": "#002aff",
       "style": "circle"
@@ -1414,7 +1411,7 @@ const DATA = {
     },
     {
       "x": -991,
-      "y": -405.5,
+      "y": -153.5,
       "rot": 270,
       "color": "#002aff",
       "style": "circle"
@@ -1427,7 +1424,7 @@ const DATA = {
       "style": "circle"
     },
     {
-      "x": -1089,
+      "x": -1104,
       "y": -1565.5,
       "rot": 90,
       "color": "#002aff",
@@ -1436,12 +1433,12 @@ const DATA = {
   ],
   "bounds": {
     "minX": -1980,
-    "minY": -6227,
-    "maxX": 1491,
+    "minY": -4972,
+    "maxX": 1427,
     "maxY": 345
   },
-  "contentW": 3471,
-  "contentH": 6572
+  "contentW": 3407,
+  "contentH": 5317
 };
 const ATTACHMENTS = "attachments";
 
@@ -1462,6 +1459,8 @@ const ATTACHMENTS = "attachments";
   var minScale = 0.02;
 
   // --- Build groups ---
+  var labelOverlay = document.createElement("div");
+  labelOverlay.id = "group-labels";
   DATA.groups.forEach(function(g) {
     var div = document.createElement("div");
     div.className = "group";
@@ -1472,13 +1471,19 @@ const ATTACHMENTS = "attachments";
     if (g.color) {
       div.style.setProperty('--group-border-color', g.color + '99');
       div.style.setProperty('--group-bg', g.color + '12');
-      div.style.setProperty('--group-label-color', g.color + 'dd');
     }
-    var label = document.createElement("div");
-    label.className = "group-label";
-    label.textContent = g.label;
-    div.appendChild(label);
     world.appendChild(div);
+
+    // Label in separate overlay
+    if (g.label) {
+      var label = document.createElement("div");
+      label.className = "group-label";
+      label.textContent = g.label;
+      label.style.left = g.x + "px";
+      label.style.top = g.y + "px";
+      if (g.color) label.style.setProperty('--group-label-color', g.color + 'dd');
+      labelOverlay.appendChild(label);
+    }
   });
 
   // --- Build edges (SVG inside world, between groups and nodes) ---
@@ -1700,6 +1705,9 @@ const ATTACHMENTS = "attachments";
 
     world.appendChild(div);
   });
+
+  // Labels always on top of everything
+  world.appendChild(labelOverlay);
 
   // --- Scrollable node focus (click to select, scroll inside, click map to deselect) ---
   var focusedNode = null;
