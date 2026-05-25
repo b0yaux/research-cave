@@ -4,24 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research Cave</title>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
 <style>
 body {
   background-image: url('research-landscape/grotte-1.jpg');
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
+  transition: background-image 0.6s ease;
   font-family: monospace;
   font-size: 14px;
   color: #e0e0e0;
-  padding: 24px 32px;
+  padding: 0;
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 h1 {
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'Mystery Quest', cursive;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -38,21 +39,35 @@ li { margin-bottom: 8px; }
 a { color: #e0e0e0; text-decoration: none; }
 a:hover { text-decoration: underline; }
 #credits {
-  font-size: 11px;
-  opacity: 0.4;
-  margin-top: 32px;
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  color: #ffffff;
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.5;
 }
 </style>
 </head>
 <body>
-<div>
-<h1>research cave</h1>
+<div style="padding: 24px 32px;">
+<h1>Research Cave</h1>
 <hr>
 <ul>
-<li><a href="research-landscape/">research landscape</a></li>
-<li><a href="post-binary-esotericisms/">post-binary esotericisms</a></li>
+<li><a href="research-landscape/" data-bg="research-landscape/grotte-1.jpg">research landscape</a></li>
+<li><a href="post-binary-esotericisms/" data-bg="post-binary-esotericisms/blue-cloudy-sky-sun-rays-background.jpg">post-binary esotericisms</a></li>
 </ul>
 </div>
-<div id="credits">research cartography by jaufre — built with obsidian + canvas-web-publish</div>
+<div id="credits">@jaufre @ptdrwtf @7033060007</div>
+<script>
+const defaultBg = getComputedStyle(document.body).backgroundImage;
+document.querySelectorAll('ul a[data-bg]').forEach(a => {
+  const img = new Image();
+  img.src = a.dataset.bg;
+  a.addEventListener('mouseenter', () => document.body.style.backgroundImage = `url('${a.dataset.bg}')`);
+  a.addEventListener('mouseleave', () => document.body.style.backgroundImage = defaultBg);
+});
+</script>
 </body>
 </html>
